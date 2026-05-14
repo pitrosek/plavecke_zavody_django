@@ -3,7 +3,7 @@ from django.core.validators import MinValueValidator
 
 
 class Stat(models.Model):
-    """Stat/Země"""
+
     stat_id = models.AutoField(primary_key=True)
     nazev = models.CharField(max_length=4, unique=True)  # CZE, SVK, POL, GER, UKR
     hymna = models.CharField(max_length=255, blank=True, null=True)
@@ -18,7 +18,7 @@ class Stat(models.Model):
 
 
 class Mesto(models.Model):
-    """Město"""
+    
     mesto_id = models.AutoField(primary_key=True)
     nazev = models.CharField(max_length=100)
     symbol = models.BinaryField(blank=True, null=True)
@@ -34,7 +34,7 @@ class Mesto(models.Model):
 
 
 class Klub(models.Model):
-    """Plavecký klub"""
+    
     klub_id = models.AutoField(primary_key=True)
     nazev = models.CharField(max_length=100)
     mesto = models.ForeignKey(Mesto, on_delete=models.CASCADE)
@@ -50,7 +50,7 @@ class Klub(models.Model):
 
 
 class Plavec(models.Model):
-    """Plavec/Závodník"""
+   
     POHLAVI_CHOICES = [
         ('M', 'Muž'),
         ('Z', 'Žena'),
@@ -77,7 +77,7 @@ class Plavec(models.Model):
 
 
 class Trener(models.Model):
-    """Trenér"""
+    
     POHLAVI_CHOICES = [
         ('M', 'Muž'),
         ('Z', 'Žena'),
@@ -102,7 +102,7 @@ class Trener(models.Model):
 
 
 class Disciplina(models.Model):
-    """Disciplína plavání"""
+   
     STYL_CHOICES = [
         ('volný způsob', 'Volný způsob'),
         ('prsa', 'Prsa'),
@@ -132,7 +132,7 @@ class Disciplina(models.Model):
 
 
 class Zavod(models.Model):
-    """Závod/Soutěž"""
+    
     BAZEN_CHOICES = [
         ('50', '50 metrů'),
         ('25', '25 metrů'),
@@ -155,7 +155,7 @@ class Zavod(models.Model):
 
 
 class DisciplinyZavodu(models.Model):
-    """Disciplíny v daném závodu"""
+   
     discipliny_zavodu_id = models.AutoField(primary_key=True)
     disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
     zavod = models.ForeignKey(Zavod, on_delete=models.CASCADE)
@@ -172,7 +172,7 @@ class DisciplinyZavodu(models.Model):
 
 
 class Vysledek(models.Model):
-    """Výsledek závodníka v disciplíně"""
+    
     vysledek_id = models.AutoField(primary_key=True)
     zavod = models.ForeignKey(Zavod, on_delete=models.CASCADE)
     plavec = models.ForeignKey(Plavec, on_delete=models.CASCADE)
